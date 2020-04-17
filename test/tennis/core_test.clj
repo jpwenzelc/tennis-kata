@@ -1,6 +1,6 @@
-(ns tennis.core-test
+(ns tennis.main-test
   (:require [clojure.test :refer :all]
-            [tennis.core :refer :all]))
+            [tennis.main :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."
