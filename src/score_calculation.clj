@@ -37,6 +37,5 @@
       (is-tie? scores) (if (is-deuce? scores)
                          "deuce"
                          (shout-score scores))
-      :else (if (= scores [0 1])
-              "love fifteen"))
+      :else (shout-score scores))
     "invalid input"))
