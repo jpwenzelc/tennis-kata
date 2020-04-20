@@ -7,6 +7,13 @@
               2 "thirty"
               3 "fourty"})
 
+(defn- no-negative-input [input]
+  (not (or (neg? (first input)) (neg? (second input)))))
+
+(defn- is-valid?
+  [input]
+  (no-negative-input input))
+
 (defn- to-tennis-score
   [score]
   (get tie-map score))
@@ -25,9 +32,11 @@
 
 (defn score
   [scores]
-  (cond
-    (is-tie? scores) (if (is-deuce? scores)
-                       "deuce"
-                       (shout-score scores))
-    :else (if (= scores [0 1])
-            "love fifteen")))
+  (if (is-valid? scores)
+    (cond
+      (is-tie? scores) (if (is-deuce? scores)
+                         "deuce"
+                         (shout-score scores))
+      :else (if (= scores [0 1])
+              "love fifteen"))
+    "invalid input"))
