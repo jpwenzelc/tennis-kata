@@ -10,7 +10,7 @@
 (defn- no-negative-input [input]
   (not (or (neg? (first input)) (neg? (second input)))))
 
-(defn- is-valid?
+(defn- valid-input?
   [input]
   (no-negative-input input))
 
@@ -22,9 +22,13 @@
   [scores]
   (= (first scores) (second scores)))
 
-(defn- is-deuce?
+(defn- is-deuceable?
   [scores]
-  (and (is-tie? scores) (< 2 (first scores))))
+  (and (< 2 (first scores)) (< 2 (second scores))))
+
+(defn- shout-advantage
+  [scores]
+  "advantage player 1")
 
 (defn- shout-score
   [scores]
@@ -32,8 +36,10 @@
 
 (defn score
   [scores]
-  (if (is-valid? scores)
+  (if-not (valid-input? scores)
+    "invalid input"
     (cond
-      (is-deuce? scores) "deuce"
-      :else (shout-score scores))
-    "invalid input"))
+      (is-deuceable? scores) (if (is-tie? scores)
+                               "deuce"
+                               (shout-advantage scores))
+      :else (shout-score scores))))
