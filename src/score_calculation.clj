@@ -7,13 +7,27 @@
               2 "thirty"
               3 "fourty"})
 
+(defn- to-tennis-score
+  [score]
+  (get tie-map score))
+
+(defn- is-deuce?
+  [scores]
+  false)
+
 (defn- is-tie?
   [scores]
   (= (first scores) (second scores)))
 
+(defn- shout-score
+  [scores]
+  (str/join " " (map to-tennis-score scores)))
+
 (defn score
   [scores]
   (cond
-    (is-tie? scores) (str/join " " (map #(get tie-map %) scores))
+    (is-tie? scores) (if (is-deuce? scores)
+                       "deuce"
+                       (shout-score scores))
     :else (if (= scores [0 1])
             "love fifteen")))
