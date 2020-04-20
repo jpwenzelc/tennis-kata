@@ -18,13 +18,13 @@
   [score]
   (get tie-map score))
 
-(defn- is-deuce?
-  [scores]
-  false)
-
 (defn- is-tie?
   [scores]
   (= (first scores) (second scores)))
+
+(defn- is-deuce?
+  [scores]
+  (and (is-tie? scores) (< 2 (first scores))))
 
 (defn- shout-score
   [scores]
@@ -34,8 +34,6 @@
   [scores]
   (if (is-valid? scores)
     (cond
-      (is-tie? scores) (if (is-deuce? scores)
-                         "deuce"
-                         (shout-score scores))
+      (is-deuce? scores) "deuce"
       :else (shout-score scores))
     "invalid input"))

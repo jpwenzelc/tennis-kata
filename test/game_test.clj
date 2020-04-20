@@ -13,4 +13,5 @@
            (is (= "thirty fourty" (score [2 3])))
            (is (= "invalid input" (score [-1 0])))
            (is (= "invalid input" (score [0 -1])))
-           (is (= "invalid input" (score [-2 -6])))))
+           (is (= "invalid input" (score [-2 -6])))
+           (is (= "deuce" (score [3 3])))))
