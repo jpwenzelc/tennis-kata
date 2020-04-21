@@ -15,4 +15,5 @@
            (is (= "invalid input" (score [0 -1])))
            (is (= "invalid input" (score [-2 -6])))
            (is (= "deuce" (score [3 3])))
-           (is (= "advantage player 1" (score [4 3])))))
+           (is (= "advantage player 1" (score [4 3])))
+           (is (= "advantage player 2" (score [3 4])))))

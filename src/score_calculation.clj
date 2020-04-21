@@ -26,9 +26,15 @@
   [scores]
   (and (< 2 (first scores)) (< 2 (second scores))))
 
+(defn- winning-player
+  [scores]
+  (if (> (first scores) (second scores))
+    "1"
+    "2"))
+
 (defn- shout-advantage
   [scores]
-  "advantage player 1")
+  (str "advantage player " (winning-player scores)))
 
 (defn- shout-score
   [scores]
