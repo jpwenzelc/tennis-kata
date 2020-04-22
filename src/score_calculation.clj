@@ -8,7 +8,7 @@
               3 "fourty"})
 
 (defn- no-negative-input [input]
-  (not (or (neg? (first input)) (neg? (second input)))))
+  (not-any? neg? input))
 
 (defn- valid-input?
   [input]
@@ -32,14 +32,6 @@
     "1"
     "2"))
 
-(defn- shout-advantage
-  [scores]
-  (str "advantage player " (winning-player scores)))
-
-(defn- shout-score
-  [scores]
-  (str/join " " (map to-tennis-score scores)))
-
 (defn- is-winning-by-2?
   [score1 score2]
   (< 1 (Math/abs (- score1 score2))))
@@ -55,13 +47,20 @@
   [scores]
   (str "player " (winning-player scores) " wins"))
 
+(defn- shout-advantage
+  [scores]
+  (str "advantage player " (winning-player scores)))
+
+(defn- shout-score
+  [scores]
+  (str/join " " (map to-tennis-score scores)))
+
 (defn score
   [scores]
   (if-not (valid-input? scores)
     "invalid input"
     (cond
       (is-won? scores) (shout-winner scores)
-      (is-deuceable? scores) (if (is-tie? scores)
-                               "deuce"
-                               (shout-advantage scores))
+      (and (is-deuceable? scores) (is-tie? scores)) "deuce"
+      (is-deuceable? scores) (shout-advantage scores)
       :else (shout-score scores))))
