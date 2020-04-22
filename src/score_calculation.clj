@@ -21,7 +21,7 @@
 
 (defn- is-deuceable?
   [scores]
-  (and (< 2 (first scores)) (< 2 (second scores))))
+  (every? true? (map #(< 2 %) scores)))
 
 (defn- winning-player
   [scores]
