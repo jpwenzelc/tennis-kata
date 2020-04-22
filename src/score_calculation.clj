@@ -44,6 +44,9 @@
   [scores]
   (str "player " (winning-player scores) " wins"))
 
+(defn- shout-deuce
+  []
+  (str "deuce"))
 (defn- shout-advantage
   [scores]
   (str "advantage player " (winning-player scores)))
@@ -58,6 +61,6 @@
     "invalid input"
     (cond
       (is-won? scores) (shout-winner scores)
-      (and (is-deuceable? scores) (is-tie? scores)) "deuce"
+      (and (is-deuceable? scores) (is-tie? scores)) (shout-deuce)
       (is-deuceable? scores) (shout-advantage scores)
       :else (shout-score scores))))
