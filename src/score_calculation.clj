@@ -47,6 +47,7 @@
 (defn- shout-deuce
   []
   (str "deuce"))
+
 (defn- shout-advantage
   [scores]
   (str "advantage player " (winning-player scores)))
