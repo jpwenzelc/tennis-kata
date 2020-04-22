@@ -7,12 +7,9 @@
               2 "thirty"
               3 "fourty"})
 
-(defn- no-negative-input [input]
-  (not-any? neg? input))
-
 (defn- valid-input?
   [input]
-  (no-negative-input input))
+  (not-any? neg? input))
 
 (defn- to-tennis-score
   [score]
