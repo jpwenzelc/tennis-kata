@@ -40,11 +40,27 @@
   [scores]
   (str/join " " (map to-tennis-score scores)))
 
+(defn- is-winning-by-2?
+  [score1 score2]
+  (< 1 (Math/abs (- score1 score2))))
+
+(defn- is-won?
+  [scores]
+  (let [score1 (first scores)
+        score2 (second scores)]
+    (or (< 3 (Math/abs (- score1 score2)))
+        (and (is-deuceable? scores) (is-winning-by-2? score1 score2)))))
+
+(defn- shout-winner
+  [scores]
+  (str "player " (winning-player scores) " wins"))
+
 (defn score
   [scores]
   (if-not (valid-input? scores)
     "invalid input"
     (cond
+      (is-won? scores) (shout-winner scores)
       (is-deuceable? scores) (if (is-tie? scores)
                                "deuce"
                                (shout-advantage scores))
