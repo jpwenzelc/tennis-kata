@@ -17,7 +17,7 @@
 
 (defn- is-tie?
   [scores]
-  (= (first scores) (second scores)))
+  (reduce = scores))
 
 (defn- is-deuceable?
   [scores]
