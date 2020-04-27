@@ -1,4 +1,4 @@
-(ns game-test
+(ns score-calculation-test
   (:require [clojure.test :refer :all]
             [score-calculation :refer :all]))
 
@@ -18,7 +18,7 @@
            (is (= "advantage player 1" (score [4 3])))
            (is (= "advantage player 2" (score [3 4])))
            (is (= "advantage player 2" (score [11 12])))
-           (is (= "player 1 wins" (score [4 0])))
-           (is (= "player 2 wins" (score [0 4])))
-           (is (= "player 1 wins" (score [6 4])))
-           (is (= "player 2 wins" (score [10 12])))))
+           (is (= :player1-victory (score [4 0])))
+           (is (= :player2-victory (score [0 4])))
+           (is (= :player1-victory (score [6 4])))
+           (is (= :player2-victory (score [10 12])))))

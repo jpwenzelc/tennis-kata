@@ -42,7 +42,9 @@
 
 (defn- shout-winner
   [scores]
-  (str "player " (winning-player scores) " wins"))
+  (if (= "1" (winning-player scores))
+    :player1-victory
+    :player2-victory))
 
 (defn- shout-deuce
   []
